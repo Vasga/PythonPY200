@@ -25,5 +25,13 @@ files:
 - name: __init__.py
   visible: false
   learner_created: false
-status: Unchecked
+status: Failed
+feedback:
+  message: Incorrect
+  time: Thu, 09 Jun 2022 18:07:10 UTC
+  expected: |
+    <class '__main__.Glass'>
+    <class '__main__.Glass'>
+    True
+  actual: <no output>
 record: -1

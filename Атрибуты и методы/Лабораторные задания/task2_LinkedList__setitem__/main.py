@@ -60,7 +60,7 @@ class LinkedList:
         node = self.step_by_step_on_nodes(index)
         return node.value
 
-    # TODO реализовать магический метод __setitem__
+    def __setitem__(self, index: int, value:):# TODO реализовать магический метод __setitem__
 
     def to_list(self) -> list:
         return [linked_list_value for linked_list_value in self]
