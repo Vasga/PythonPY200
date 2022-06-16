@@ -8,7 +8,7 @@ class Figure:
 
 class Rectangle(Figure):
     def __init__(self, a, b, name=None):
-        # TODO вызвать конструктор базового класса
+        super().__init__(name=name)
         self.a = a
         self.b = b
 
@@ -16,3 +16,4 @@ class Rectangle(Figure):
 if __name__ == "__main__":
     rect = Rectangle(5, 10, 'rect_fig')
     rect.print_name()
+    rect.__dict__
