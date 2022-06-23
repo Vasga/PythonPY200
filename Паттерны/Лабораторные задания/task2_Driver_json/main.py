@@ -41,9 +41,30 @@ class SimpleFileDriver(IStructureDriver):
         return f"{self.__class__.__name__}(\"{self.filename}\")"
 
 
-# TODO Реализовать класс JsonFileDriver
+class JsonFileDriver(IStructureDriver):
+    def __init__(self, json_filename):
+        self.json_filename = json_filename
+
+    def read(self) -> Iterable:
+        with open(self.json_filename) as f:
+            input_ = json.load(f)
+        if not isinstance(input_, list):
+            raise TypeError
+        return input_
+
+    def write(self, data: Iterable) -> None:
+        data = [value for value in data]
+        with open(self.json_filename, "w") as f:
+            json.dump(data, f)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(\"{self.json_filename}\")"
 
 
 if __name__ == "__main__":
-    # Write your solution here
-    pass
+    write_data = [1, 2, 3]
+    driver = JsonFileDriver('output.json')
+    driver.write(write_data)
+
+    read_data = driver.read()
+    print(read_data)
