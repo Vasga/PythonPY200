@@ -1,3 +1,4 @@
+import sys
 from typing import Any, Optional
 import weakref
 
@@ -17,7 +18,7 @@ class DoubleLinkedNode(Node):
     @prev.setter
     def prev(self, prev: Optional["Node"]):
         self.is_valid(prev)
-        self._prev = prev  # TODO сделать слабую ссылку
+        self._prev = None if prev is None else weakref.ref(prev)  # TODO сделать слабую ссылку
 
     def __repr__(self) -> str:
         next_prev = None if self.prev is None else f"DoubleLinkedNode({self.prev})"
@@ -47,6 +48,8 @@ class DoubleLinkedList(LinkedList):
 
 if __name__ == "__main__":
     ll = DoubleLinkedList([1, 2, 3, 4, 5])
+    print(ll)
+
 
     ll.clear()
 
