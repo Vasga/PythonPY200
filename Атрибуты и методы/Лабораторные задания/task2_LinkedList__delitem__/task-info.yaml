@@ -12,13 +12,13 @@ files:
   visible: true
   placeholders:
   - offset: 1992
-    length: 28
+    length: 510
     placeholder_text: '...  # TODO проверка индекса'
     initial_state:
       length: 28
       offset: 1992
     initialized_from_dependency: false
-    selected: true
+    selected: false
     status: Failed
     encrypted_possible_answer: |-
       if not isinstance(index, int):
@@ -26,7 +26,7 @@ files:
 
               if not 0 <= index < self.len:  # для for
                   raise IndexError()
-  - offset: 2030
+  - offset: 2512
     length: 29
     placeholder_text: '...  # TODO алгоритм удаления'
     initial_state:
@@ -186,7 +186,7 @@ files:
 status: Failed
 feedback:
   message: Incorrect
-  time: Thu, 09 Jun 2022 17:46:57 UTC
+  time: Wed, 06 Jul 2022 09:07:05 UTC
   expected: |
     [1, 2, 3]
     [1, 3]

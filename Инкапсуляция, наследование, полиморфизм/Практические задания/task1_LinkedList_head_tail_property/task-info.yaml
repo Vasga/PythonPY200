@@ -11,7 +11,7 @@ files:
   visible: true
   placeholders:
   - offset: 68
-    length: 2124
+    length: 2112
     placeholder_text: |-
       # TODO защитить от модификации атрибуты head, tail, len
       class LinkedList:
@@ -287,5 +287,5 @@ files:
 status: Solved
 feedback:
   message: Congratulations!
-  time: Thu, 16 Jun 2022 17:02:50 UTC
+  time: Wed, 06 Jul 2022 07:21:41 UTC
 record: -1

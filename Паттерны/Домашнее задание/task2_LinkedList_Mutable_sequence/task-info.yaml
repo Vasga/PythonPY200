@@ -4,13 +4,13 @@ files:
   visible: true
   placeholders:
   - offset: 0
-    length: 49
+    length: 390
     placeholder_text: '# TODO Реализовать LinkedList как MutableSequence'
     initial_state:
       length: 49
       offset: 0
     initialized_from_dependency: false
-    selected: false
+    selected: true
     status: Solved
     encrypted_possible_answer: |-
       from collections.abc import MutableSequence

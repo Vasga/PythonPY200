@@ -1,13 +1,16 @@
 from typing import Iterable, Optional, Any
+from collections.abc import MutableSequence
 
-from node import Node
+from node import Node, DoubleLinkedNode
 
 
-class LinkedList:
+class LinkedList(MutableSequence):
     def __init__(self, data: Iterable = None):
         """Конструктор связного списка"""
         self.len = 0
         self.head: Optional[Node] = None
+        self.tail = self.head
+        super(LinkedList, self).__init__()
 
         if data is not None:
             for value in data:
@@ -75,10 +78,10 @@ class LinkedList:
         if index == 0:
             self.head = self.head.next
         elif index == self.len - 1:
-            tail = self.step_by_step_on_nodes(index-1)
+            tail = self.step_by_step_on_nodes(index - 1)
             tail.next = None
         else:
-            prev_node = self.step_by_step_on_nodes(index-1)
+            prev_node = self.step_by_step_on_nodes(index - 1)
             del_node = prev_node.next
             next_node = del_node.next
 
@@ -108,7 +111,7 @@ class LinkedList:
         elif index >= self.len - 1:
             self.append(value)
         else:
-            prev_node = self.step_by_step_on_nodes(index-1)
+            prev_node = self.step_by_step_on_nodes(index - 1)
             next_node = prev_node.next
 
             self.linked_nodes(prev_node, insert_node)
@@ -117,22 +120,56 @@ class LinkedList:
             self.len += 1
 
 
+class DoubleLinkedList(LinkedList):
+
+    def __init__(self, data: Iterable = None):
+        super().__init__(data)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_list()})"
+
+    def __str__(self):
+        return f"{self.to_list()}"
+
+    @staticmethod
+    def linked_nodes(left_node: DoubleLinkedNode, right_node: Optional[DoubleLinkedNode] = None) -> None:
+        left_node.next = right_node
+        right_node.prev = left_node
+
+    def to_list(self):
+        return [linked_list_value for linked_list_value in self]
+
+
+    def append(self, value: Any):
+        """ Добавление элемента в конец связного списка. """
+        append_node = DoubleLinkedNode(value)
+
+        if self.head is None:
+            self.head = self.tail = append_node
+        else:
+            self.linked_nodes(self.tail, append_node)
+            self.tail = append_node
+
+        self.len += 1
+
+
 if __name__ == '__main__':
-    list_ = [1, 2, 3]
-    linked_list = LinkedList(list_)
-    print(linked_list)
+    list_ = (1, 2, 3, 7)
+    linked_list = DoubleLinkedList(list_)
+    print(repr(linked_list))
 
-    linked_list.insert(0, 0)
-    print(linked_list)
+    # linked_list.insert(0, 0)
+    # print(linked_list)
+    #
+    # linked_list.insert(len(linked_list), len(linked_list))
+    # print(linked_list)
 
-    linked_list.insert(len(linked_list), len(linked_list))
-    print(linked_list)
-
-    linked_list.insert(100, 100)
-    print(linked_list)
-    linked_list.insert(99, 99)
-    print(linked_list)
-
-    linked_list.insert(2, "wow")
-    print(linked_list)
-    print(linked_list[2] == "wow")
+    # linked_list.insert(100, 100)
+    # print(linked_list)
+    linked_list.append(88)
+    print(repr(linked_list))
+    #
+    # linked_list.insert(2, "wow")
+    # print(linked_list)
+    # print(linked_list[2] == "wow")
+    # print(linked_list.__getitem__(2))

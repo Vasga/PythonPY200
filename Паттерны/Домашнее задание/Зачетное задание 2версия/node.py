@@ -23,6 +23,10 @@ class Node:
         if not isinstance(node, (type(None), Node)):
             raise TypeError
 
+    def set_next(self, next_: Optional["Node"] = None) -> None:
+        self.is_valid(next_)
+        self.next = next_
+
 
 class DoubleLinkedNode(Node):
     """ Класс, который описывает узел двусвязного списка."""
@@ -45,7 +49,6 @@ class DoubleLinkedNode(Node):
         super().__str__()
         return str(self.value)
 
-
     @property
     def prev(self):
         return self._prev
@@ -55,7 +58,19 @@ class DoubleLinkedNode(Node):
         self._prev = prev
 
 
-
-
-
+# if __name__ == "__main__":
+#     f = DoubleLinkedNode(1)
+#     s = DoubleLinkedNode(2)
+#     t = DoubleLinkedNode(3)
+#     fo = DoubleLinkedNode(4)
+#
+#     f.next = s
+#     s.next = t
+#     s.prev = f
+#     t.prev = s
+#     t.next = fo
+#
+#     print(repr(f))
+#     print(repr(s))
+#     print(repr(t))
 
